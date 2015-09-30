@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--
+    normalize.css removes cross-browser differences in defaults, e.g.,
+    differences in how form elements appear between Firefox and IE
+    See: http://necolas.github.com/normalize.css/
+  -->
+<%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+<%= csrf_meta_tags %>
+
+<%= stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" %>
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="/js/application.js"></script>
+
+  <title></title>
+</head>
+<body>
+  <nav class="navbar navbar-default navbar-static-top">
+    <div class='row'>
+        <a href='/' class='style-off'>
+          <div class="col-md-4"><h3>Cookie<img src='/images/cookie_gif.gif-c200' class="cookie-size">verflow</h3>
+          </div>
+        </a>
+        <% if user_signed_in? %>
+        Logged in as <strong><%= current_user.email %></strong>.
+          <div class="col-md-4 vert-align"><a href='/questions/new'>Create Question</a></div>
+          <div class="col-md-1 vert-align"><a href='/users/<%= session[:user_id] %>'>Profile</a></div>
+          <div class="col-md-1 vert-align"><a href='/logout'>Log Out</a></div>
+  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+        <% else %>
+          <div class="col-md-1"></div>
+          <div class="col-md-1 vert-align">
+          <%= link_to "Register", new_user_registration_path %>
+          </div>
+          <div class="col-md-1 vert-align">
+            <%= link_to "Login", new_user_session_path %>
+          </div>
+        <% end %>
+  </nav>
+
+
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger"><%= alert %></p>
+  <% end %>
+
+  <%= yield %>
+</body>
+</html>
+
