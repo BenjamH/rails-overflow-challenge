@@ -20,12 +20,14 @@ module SessionsHelper
 
   #used for the buttons in each individual questions's page
   def same_user?
-    session[:user_id] == @question.author.id
+    return nil unless current_user
+    current_user.id == @question.author.id
   end
 
   #used in profile
   def edit_profile?
-    session[:user_id] == @user.id
+    return nil unless current_user
+    current_user.id == @user.id
   end
 
 end

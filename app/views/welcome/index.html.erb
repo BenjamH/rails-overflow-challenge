@@ -1,2 +1,46 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+
+    <div class="page-header text-center">
+      <h1>Cookie Overflow</h1>
+      <h4>When Lisa spoils you too much</h4>
+    </div>
+
+  </div>
+  <div class="col-md-4"></div>
+</div>
+
+<hr>
+ <% @questions.each do |question| %>
+    <div class="row">
+      <div class="col-md-1 col-md-offset-1 text-a-c">
+          <%= question.votes.count %> </br> vote
+      </div>
+      <div class="col-md-1 text-a-c">
+        <%= question.answers.count %> </br> answers
+      </div>
+      <div class="col-md-1 text-a-c">
+        <%= question.views %> </br> views
+      </div>
+      <div class="col-md-4 text-a-c">
+        <a href='/questions/<%= question.id %>'><%= question.title %></a>
+      </div>
+      <div class="col-md-4 text-a-c">
+       Asked by <a href='/users/<%= question.author.id %>'><%= question.author.email %></a> </br>
+        <%= ((Time.now - question.created_at.in_time_zone("Pacific Time (US & Canada)"))/60).floor %> minutes ago
+      </div>
+    </div>
+    <hr>
+
+    <!--   <tr>
+        <td>Voting Stuff</td>
+        <td><p><a href='/questions/<%= question.id %>'><%= question.title %></a></p></td>
+        <td> Other stuff? </td>
+      </tr> -->
+    <% end %>
+<!--   </table>
+ -->
+<!-- </div>
+ -->
+

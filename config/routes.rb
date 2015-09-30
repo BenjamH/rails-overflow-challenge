@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
 
+  # resources :questions
+
   get 'welcome/index'
   get    'register'  => 'users#new'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
+  # get 'profile' => 'users#show'
   devise_for :users
+  resources :users
+
+  resources :questions do
+    resources :answers
+  end
+
+
   # resources :users
 
   root 'welcome#index'
