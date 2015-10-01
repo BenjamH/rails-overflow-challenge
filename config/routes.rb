@@ -12,9 +12,13 @@ Rails.application.routes.draw do
   resources :users
 
   resources :questions do
-    resources :answers
+    resources :answers, :votes
   end
 
+
+  resources :answers do
+    resources :votes
+  end
 
   # resources :users
 

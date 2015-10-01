@@ -11,13 +11,11 @@
 <div class='row'>
 
   <div class='col-md-1 col-md-offset-2 text-center margin-t-20'>
-      <button type="button" class="btn btn-default">
-    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-      </button> <br>
+      <%= link_to raw("<span class='glyphicon glyphicon-triangle-top' aria-hidden='true'></span>"), question_votes_path(@question), class: "btn btn-success", method: :post %>
+      <!-- <button type="button" class="btn btn-default"> -->
+      <!-- </button> --> <br>
       <%= @question.votes.count %> <br>
-       <button type="button" class="btn btn-default">
-    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-      </button> <br>
+       <%= link_to raw("<span class='glyphicon glyphicon-triangle-bottom' aria-hidden='true'></span>"), question_vote_path(@question, @vote), action: "destroy", class: "btn btn-danger", method: :delete %> <br>
   </div>
 
   <div class='col-md-6'>
